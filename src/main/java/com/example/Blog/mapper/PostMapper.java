@@ -2,28 +2,33 @@ package com.example.Blog.mapper;
 
 import com.example.Blog.dto.PostDto;
 import com.example.Blog.entity.Post;
+import java.util.stream.Collectors;
 
 public class PostMapper {
-    public PostDto mapToPostDto(Post post) {
-        PostDto postDto = PostDto.builder()
+
+    // map Post entity to PostDto
+    public static PostDto mapToPostDto(Post post){
+        return PostDto.builder()
                 .id(post.getId())
                 .title(post.getTitle())
+                .url(post.getUrl())
                 .content(post.getContent())
                 .shortDescription(post.getShortDescription())
                 .createdOn(post.getCreatedOn())
                 .updatedOn(post.getUpdatedOn())
                 .build();
-        return postDto;
     }
 
-    public Post mapToPost(PostDto postDto) {
+    // map Postdto to Post entity
+    public static Post mapToPost(PostDto postDto){
         return Post.builder()
-                .id(postDto.getId())  // Assuming PostDto has an 'id' field
+                .id(postDto.getId())
                 .title(postDto.getTitle())
                 .content(postDto.getContent())
+                .url(postDto.getUrl())
                 .shortDescription(postDto.getShortDescription())
-                .createdOn(postDto.getCreatedOn())  // Assuming the createdOn field is set from the DTO
-                .updatedOn(postDto.getUpdatedOn())  // Assuming the updatedOn field is set from the DTO
+                .createdOn(postDto.getCreatedOn())
+                .updatedOn(postDto.getUpdatedOn())
                 .build();
     }
 }
