@@ -23,4 +23,13 @@ public class PostServiceImpl implements PostService {
         List<Post> posts = postRepository.findAll();
         return posts.stream().map(PostMapper::mapToPostDto).collect(Collectors.toList());
     }
+
+    @Override
+    public void createPost(PostDto postDto) {
+        String email = SecurityUtils.getCurrentUser().getUsername();
+        User createdBy = userRepository.findByEmail(email);
+        Post post = PostMapper.mapToPost(postDto);
+        post.setCreatedBy(createdBy);
+        postRepository.save(post);
+    }
 }
