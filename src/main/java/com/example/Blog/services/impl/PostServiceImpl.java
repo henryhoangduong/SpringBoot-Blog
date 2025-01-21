@@ -4,18 +4,22 @@ import com.example.Blog.dto.PostDto;
 import com.example.Blog.entity.Post;
 import com.example.Blog.mapper.PostMapper;
 import com.example.Blog.repository.PostRepository;
+import com.example.Blog.repository.UserRepository;
 import com.example.Blog.services.PostService;
+import com.example.Blog.util.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class PostServiceImpl implements PostService {
     private PostRepository postRepository;
-
+    private UserRepository userRepository;
     @Autowired
-    public PostServiceImpl(PostRepository postRepository) {
+    public PostServiceImpl(PostRepository postRepository, UserRepository userRepository) {
         this.postRepository = postRepository;
+        this.userRepository = userRepository;
     }
 
     @Override
