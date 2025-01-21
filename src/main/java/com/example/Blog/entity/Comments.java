@@ -28,7 +28,7 @@ public class Comments {
     private LocalDateTime createdOn;
     @UpdateTimestamp
     private LocalDateTime updatedOn;
-
+    
     @ManyToOne
     @JoinColumn(name = "post_id", nullable = false)
     private Post post;
